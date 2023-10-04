@@ -1,5 +1,6 @@
-CREATE TABLE myCoffeeShop (id INTEGER PRIMARY KEY, productType TEXT, productName TEXT, cost NUMERIC, price NUMERIC);
 
+
+CREATE TABLE myCoffeeShop (id INTEGER PRIMARY KEY, productType TEXT, productName TEXT, cost NUMERIC, price NUMERIC);
 INSERT INTO myCoffeeShop VALUES (001, "Drink", "Cappuccino", .99, 2.50);
 INSERT INTO myCoffeeShop VALUES (002, "Drink", "Chai Tea", .50, 2.50);
 INSERT INTO myCoffeeShop VALUES (003, "Drink", "Macciato", 1.20, 3.50);
@@ -17,4 +18,4 @@ INSERT INTO myCoffeeShop VALUES (014, "Drink Add On", "Oat Milk", .20, 1.00);
 INSERT INTO myCoffeeShop VALUES (015, "Drink Add On", "Coconut Milk", .30, 1.00);
 
 SELECT *FROM myCoffeeShop ORDER BY price;
-SELECT productName, MAX(price) FROM myCoffeeShop;
+SELECT productType, productName, MAX(price) FROM myCoffeeShop;
