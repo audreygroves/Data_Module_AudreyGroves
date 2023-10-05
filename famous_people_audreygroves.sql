@@ -37,13 +37,14 @@ INSERT into Hobbies (name, friends_id) VALUES ("watching TV", 3);
 INSERT into Hobbies (name, friends_id) VALUES ("watching TV", 4);
 
 
-    
+/*table to show hobbies of friends*/
 SELECT Hobbies.name AS Hobby, Friends.fullname AS Name
     FROM Hobbies
     JOIN Friends
     ON Hobbies.friends_id = Friends.id
     ORDER BY friends.id;
 
+/*table to show special relationships between friends*/
 SELECT a.fullname, b.fullname, Relationships.relationship
     FROM Friends a
     JOIN Relationships
@@ -51,6 +52,7 @@ SELECT a.fullname, b.fullname, Relationships.relationship
     JOIN Friends b
     ON b.id = Relationships.friends_id_2;
     
+/* table to show similar hobbies for friends with special relationships*/ 
 SELECT a.fullname, b.fullname, Relationships.relationship, c.name
     FROM Friends a
     JOIN Relationships
