@@ -26,22 +26,7 @@ Feel free to use or modify this database schema and queries to suit your needs. 
 This repository contains a database of Marvel heroes and villains, including information on popularity, power grid attributes, and other details. The data is sourced from Marvel Wikia, observationdeck.io9, and Khan Academy.
 
 ## Database Schema
-The database consists of a single table named marvels with the following columns:
-
-ID (INTEGER, PRIMARY KEY)
-name (TEXT)
-popularity (INTEGER)
-alignment (TEXT)
-gender (TEXT)
-height_m (NUMERIC)
-weight_kg (NUMERIC)
-hometown (TEXT)
-intelligence (INTEGER)
-strength (INTEGER)
-speed (INTEGER)
-durability (INTEGER)
-energy_Projection (INTEGER)
-fighting_Skills (INTEGER)
+The database consists of a single table with information around each character including their popularity, alignment, physical characteristics, personal background, and super power attributes
 
 ## Queries
 ### 1. Aggregate Statistics
