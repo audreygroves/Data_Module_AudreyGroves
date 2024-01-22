@@ -3,12 +3,10 @@ This repository contains SQL code to create a simple database that represents a 
 
 Tables
 Friends Table
-sql
-Copy code
 CREATE TABLE Friends 
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
     fullname TEXT);
-This table stores information about friends, including their unique ID and full name.
+
 
 Relationships Table
 sql
