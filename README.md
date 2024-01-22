@@ -5,9 +5,8 @@ This repository contains SQL code to create a simple database that represents a 
 ## Tables
 
 ### Friends Table
-```sql
-
 This table stores information about friends, including their unique ID and full name.
+```sql
 
 CREATE TABLE Friends 
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -15,6 +14,8 @@ CREATE TABLE Friends
 
 This table represents relationships between friends, including their unique ID, the IDs of the two friends involved, and the nature of their relationship.
 
+### Relationships Table
+```sql
 CREATE TABLE Relationships
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
     friends_id_1 INTEGER,
