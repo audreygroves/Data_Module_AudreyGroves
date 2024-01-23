@@ -1,26 +1,61 @@
-# Famous People Database - Friends and Relationships
+# Friends and Relationships Database
 
-This repository contains SQL code to create a simple database that represents a group of friends and their relationships. The database includes tables for friends, relationships, and hobbies, as well as queries to retrieve information about friends, their special relationships, and shared hobbies.
+This README provides instructions on how to run and explore the Friends and Relationships database. The database includes information about friends, their relationships, and hobbies.
 
-## Tables
+## Setting up the Database
+
+1. **Table Creation:** Two tables, `Friends` and `Relationships`, are created to store information about friends and their relationships. Additionally, a table named `Hobbies` is created to capture friends' hobbies.
+
+2. **Data Population:** Sample data is inserted into the tables using `INSERT INTO` statements.
+
+## Querying the Database
 
 ### Friends Table
-This table stores information about friends, including their unique ID and full name.
+
+- **Friends List:**
+  ```sql
+  SELECT fullname FROM Friends;
+  ```
 
 ### Relationships Table
-This table represents relationships between friends, including their unique ID, the IDs of the two friends involved, and the nature of their relationship.
+
+- **Special Relationships:**
+  ```sql
+  SELECT a.fullname, b.fullname, Relationships.relationship
+  FROM Friends a
+  JOIN Relationships
+  ON a.id = Relationships.friends_id_1
+  JOIN Friends b
+  ON b.id = Relationships.friends_id_2;
+  ```
 
 ### Hobbies Table
-This table records the hobbies of friends, including the unique ID of the hobby, the name of the hobby, and the ID of the friend associated with the hobby.
 
-### Data Population
-The provided SQL code also includes sample data to populate the tables, including friends' names, relationships, and hobbies.
+- **Friends and Their Hobbies:**
+  ```sql
+  SELECT Hobbies.name AS Hobby, Friends.fullname AS Name
+  FROM Hobbies
+  JOIN Friends
+  ON Hobbies.friends_id = Friends.id
+  ORDER BY friends.id;
+  ```
 
-## Queries
-The included queries provide insights into the relationships and hobbies of the friends
+- **Similar Hobbies for Friends with Special Relationships:**
+  ```sql
+  SELECT a.fullname, b.fullname, Relationships.relationship, c.name
+  FROM Friends a
+  JOIN Relationships
+  ON a.id = Relationships.friends_id_1
+  JOIN Friends b
+  ON b.id = Relationships.friends_id_2
+  JOIN Hobbies c
+  ON a.id = c.friends_id
+  JOIN Hobbies d
+  ON b.id = d.friends_id
+  WHERE c.name = d.name;
+  ```
 
-Feel free to use or modify this database schema and queries to suit your needs. Enjoy exploring the relationships and hobbies of these friends!
-
+Feel free to modify and run these queries to explore the Friends and Relationships database.
 
 # Marvel Heroes and Villains Database
 
