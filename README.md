@@ -23,24 +23,88 @@ Feel free to use or modify this database schema and queries to suit your needs. 
 
 
 # Marvel Heroes and Villains Database
-This repository contains a database of Marvel heroes and villains, including information on popularity, power grid attributes, and other details. The data is sourced from Marvel Wikia, observationdeck.io9, and Khan Academy.
 
-## Database Schema
-The database consists of a single table with information around each character including their popularity, alignment, physical characteristics, personal background, and super power attributes
+This README provides instructions on how to run and explore the Marvel Heroes and Villains database. The database includes information on various Marvel characters, such as their name, popularity, alignment, gender, physical attributes, and power grid data.
 
-## Queries
-### 1. Aggregate Statistics
-Max Popularity: SELECT name, MAX(popularity) AS most_popular_score FROM marvels
-Min Strength: SELECT name, MIN(strength) AS least_strong FROM marvels
-Avg Intelligence by Alignment: SELECT alignment, ROUND(AVG(intelligence)) AS avg_intelligence FROM marvels GROUP BY alignment
-Avg Strength by Hometown: SELECT hometown, ROUND(AVG(strength)) AS Avg_Strength FROM marvels GROUP BY hometown ORDER BY Avg_Strength
+## Setting up the Database
 
-### 2. HAVING Clause
-Avg Intelligence by Gender (< 4): SELECT gender, AVG(intelligence) AS avg_intelligence FROM marvels GROUP BY gender HAVING avg_intelligence < 4
+1. **Data Source:** The data is collected from [Marvel Wikia](http://marvel.wikia.com/Main_Page) and [Observation Deck](http://observationdeck.io9.com/something-i-found-marvel-character-popularity-poll-cb-1568108064).
 
-### 3. Filtering with AND/OR
-Characters with Strength or Intelligence > 5: SELECT name, strength, intelligence FROM marvels WHERE (strength > 5 OR intelligence > 5);
-Female Characters who are Evil or Neutral: SELECT name, alignment FROM marvels WHERE gender = "Female" AND (alignment = "Evil" OR alignment = "Neutral");
+2. **Data Structure:** The database is represented by a table named `marvels` with the following columns:
+   - `ID` (Primary Key)
+   - `name`
+   - `popularity`
+   - `alignment`
+   - `gender`
+   - `height_m`
+   - `weight_kg`
+   - `hometown`
+   - `intelligence`
+   - `strength`
+   - `speed`
+   - `durability`
+   - `energy_Projection`
+   - `fighting_Skills`
 
-Explore and analyze the Marvel data with these queries!
+3. **Data Population:** Sample data is inserted into the `marvels` table using `INSERT INTO` statements.
 
+## Querying the Database
+
+### Basic Queries
+
+- **Maximum Popularity:**
+  ```sql
+  SELECT name, MAX(popularity) AS most_popular_score FROM marvels;
+  ```
+
+- **Minimum Strength:**
+  ```sql
+  SELECT name, MIN(strength) AS least_strong FROM marvels;
+  ```
+
+- **Average Intelligence by Alignment:**
+  ```sql
+  SELECT alignment, ROUND(AVG(intelligence)) AS avg_intelligence FROM marvels GROUP BY alignment;
+  ```
+
+- **Average Strength by Hometown:**
+  ```sql
+  SELECT hometown, ROUND(AVG(strength)) AS Avg_Strength FROM marvels GROUP BY hometown ORDER BY Avg_Strength;
+  ```
+
+### Using HAVING Clause
+
+- **Average Intelligence by Gender (Filtered):**
+  ```sql
+  SELECT gender, AVG(intelligence) AS avg_intelligence FROM marvels GROUP BY gender HAVING avg_intelligence < 4;
+  ```
+
+### Using CASE Statement
+
+- **Popularity Grouping:**
+  ```sql
+  SELECT COUNT(*),
+      CASE
+          WHEN popularity > 85 THEN "Almost Everyone Loves"
+          WHEN popularity > 50 THEN "Most people love" 
+          WHEN popularity > 20 THEN "Some people love"
+          ELSE "Almost no-one loves"
+      END AS "popularity_grouping" 
+  FROM marvels
+  GROUP BY popularity_grouping 
+  ORDER BY COUNT(*);
+  ```
+
+### Using AND/OR in Filtering
+
+- **High Strength or Intelligence Characters:**
+  ```sql
+  SELECT name, strength, intelligence FROM marvels WHERE (strength > 5 OR intelligence > 5);
+  ```
+
+- **Female Characters who are Evil or Neutral:**
+  ```sql
+  SELECT name, alignment FROM marvels WHERE gender = "Female" AND (alignment = "Evil" OR alignment = "Neutral");
+  ```
+
+Feel free to modify and run these queries to explore the Marvel Heroes and Villains database.
